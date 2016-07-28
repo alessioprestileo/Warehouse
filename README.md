@@ -1,31 +1,37 @@
-# Warehouse
+# Simple Angular2 app for warehouse management
 
-This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.9.
+This app lets the user visualize and edit data regarding departments and products in a warehouse, it also lets  the user create new data. It takes data about departments and products from a fake server, and it can save data to the server. saved data are lost when the session is over.
 
-## Development server
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+**This is not meant to be a finished application, but rather a starting point or a reference**
 
-## Code scaffolding
+## Prerequisites (refer to Angular2 Quickstart)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive/pipe/service/route/class`.
+Node.js and npm are essential to Angular 2 development. 
+    
+<a href="https://docs.npmjs.com/getting-started/installing-node" target="_blank" title="Installing Node.js and updating npm">
+Get it now</a> if it's not already installed on your machine.
+ 
+**Verify that you are running node `v5.x.x` and npm `3.x.x`**
+by running `node -v` and `npm -v` in a terminal/console window.
+Older and newer versions produce errors.
 
-## Build
+We recommend [nvm](https://github.com/creationix/nvm) for managing multiple versions of node and npm.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+## Install npm packages (refer to Angular2 Quickstart)
 
-## Running unit tests
+> See npm and nvm version notes above
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Install the npm packages described in the `package.json` and verify that it works:
 
-## Running end-to-end tests
+**Attention Windows Developers:  You must run all of these commands in administrator mode**.
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/). 
-Before running the tests make sure you are serving the app via `ng serve`.
+```bash
+npm install
+npm start
+```
 
-## Deploying to Github Pages
+The `npm start` command first compiles the application, 
+then simultaneously re-compiles and runs the `lite-server`.
+Both the compiler and the server watch for file changes.
 
-Run `ng github-pages:deploy` to deploy to Github Pages.
-
-## Further help
-
-To get more help on the `angular-cli` use `ng --help` or go check out the [Angular-CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Shut it down manually with Ctrl-C.

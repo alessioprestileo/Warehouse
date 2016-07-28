@@ -1,0 +1,27 @@
+.col-sm-4 {
+  padding: 0% 1%;
+}
+.myButton {
+  width: 100%;
+  margin-bottom: 5%;
+  padding: 30px;
+  color: #eee;
+  background-color: #607D8B;
+  border-radius: 10px;
+}
+.myButton:hover {
+  background-color: #CFD8DC;
+  cursor: pointer;
+  color: black;
+}
+.isSelected {
+  background-color: #ffb3b3;
+  color: black;
+}
+@media (max-width: 767px) {
+  .myButton {
+    margin-bottom: 1%;
+    padding: 15px;
+  }
+}
+

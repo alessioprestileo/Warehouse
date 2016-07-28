@@ -15,7 +15,15 @@ module.exports = function(defaults) {
       'es6-shim/es6-shim.js',
       'reflect-metadata/**/*.+(ts|js|js.map)',
       'rxjs/**/*.+(js|js.map)',
-      '@angular/**/*.+(js|js.map)'
+      '@angular/**/*.+(js|js.map)',
+      'angular2-in-memory-web-api/**/*.+(js|js.map)',
+      'angular2-datatable/datatable.js',
+      'angular2-datatable/lib/*.js',
+      'bootstrap/dist/js/bootstrap.js',
+      'bootstrap/dist/fonts/*.+(woff|woff2)',
+      'bootstrap/dist/css/bootstrap.css',
+      'bootstrap/dist/css/bootstrap-theme.css',
+      'lodash/**/*.+(js|js.map)'
     ]
   });
 };

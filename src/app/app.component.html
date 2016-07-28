@@ -1,3 +1,8 @@
-<h1>
-  {{title}}
-</h1>
+<div class="background animated fadeIn">
+	<h1 id='title'>{{title}}</h1>
+    <app-fluid-buttons
+      [btnsPerRow]="sectionsPerRow" [inLabels]="sectionsLabels"
+      [inSelectedLabel]="selectedSection$" (selectedEmitter)="onSelectedSection($event)">
+    </app-fluid-buttons>
+	<router-outlet></router-outlet>
+</div>

@@ -27,13 +27,17 @@ const barrels: string[] = [
   '@angular/router',
   '@angular/platform-browser',
   '@angular/platform-browser-dynamic',
-
-  // Thirdparty barrels.
+  // Third party barrels.
   'rxjs',
-
+  'angular2-in-memory-web-api',
+  'angular2-datatable',
+  'bootstrap',
+  'lodash',
   // App specific barrels.
   'app',
   'app/shared',
+  'app/departments',
+  'app/products',
   /** @cli-barrel */
 ];
 
@@ -50,6 +54,10 @@ System.config({
   map: {
     '@angular': 'vendor/@angular',
     'rxjs': 'vendor/rxjs',
+    'angular2-in-memory-web-api': 'vendor/angular2-in-memory-web-api',
+    'angular2-datatable': 'vendor/angular2-datatable',
+    'bootstrap': 'vendor/bootstrap',
+    'lodash': 'vendor/lodash',
     'main': 'main.js'
   },
   packages: cliSystemConfigPackages
