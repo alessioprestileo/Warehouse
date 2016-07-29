@@ -23,8 +23,8 @@ export class AppComponent implements DoCheck, OnDestroy, OnInit {
   private sectionsLabels: string[];
   private selectedSection$: Observable<string>;
   private subCurrentUrl: Subscription;
-  private servicePath: string;
-  private prevPath: string;
+  private currentUrl: string;
+  private prevBrowserPath: string;
 
   constructor(
       @Inject('ROUTE_NAMES') private ROUTE_NAMES,
@@ -35,7 +35,7 @@ export class AppComponent implements DoCheck, OnDestroy, OnInit {
     this.sectionsPerRow = 2;
     this.sectionsLabels = [];
     this.subCurrentUrl = this.appRoutingService.currentUrl.subscribe(
-      (url: string) => this.servicePath = url);
+      (url: string) => this.currentUrl = url);
     this.selectedSection$ = this.appRoutingService.currentUrlLevel1;
     this.title = 'Alessio\'s warehouse';
     this.sections = [
@@ -56,12 +56,13 @@ export class AppComponent implements DoCheck, OnDestroy, OnInit {
   }
   ngDoCheck() {
     // ENABLE TIME TRAVEL
-    let currentPath: string = this.location.path();
-    if (currentPath && (currentPath !== this.prevPath)
-        && (currentPath !== this.servicePath)) {
-      this.prevPath = currentPath;
-      let link: string[] = [currentPath];
-      this.appRoutingService.navigate(link);
+    let browserPath: string = this.location.path();
+    if ((browserPath) && (browserPath !== this.prevBrowserPath)){
+      this.prevBrowserPath = browserPath;
+      if (browserPath !== this.currentUrl) {
+        let link: string[] = [browserPath];
+        this.appRoutingService.navigate(link);
+      }
     }
   }
 

@@ -1,17 +1,17 @@
 .background {
   background-color: #191919 ;
 }
-h2 { 
+h2 {
   color: #444;
-  font-family: Arial, Helvetica, sans-serif;   
+  font-family: Arial, Helvetica, sans-serif;
   font-weight: lighter;
 }
-body { 
-  margin: 2em; 
+body {
+  margin: 2em;
 }
-body, input[text], button { 
-  color: #888; 
-  font-family: Cambria, Georgia; 
+body, input[text], button {
+  color: #888;
+  font-family: Cambria, Georgia;
 }
 button {
   font-family: Arial;
@@ -19,7 +19,6 @@ button {
   border: none;
   padding: 5px 10px;
   border-radius: 4px;
-  cursor: pointer;
   cursor: hand;
 }
 button:hover {
@@ -27,10 +26,35 @@ button:hover {
 }
 button:disabled {
   background-color: #eee;
-  color: #aaa; 
+  color: #aaa;
   cursor: auto;
 }
 /* everywhere else */
-* { 
-  font-family: Arial, Helvetica, sans-serif; 
+* {
+  font-family: Arial, Helvetica, sans-serif;
 }
+
+/*.departments.fluidButton {*/
+  /*text-align: center;*/
+  /*width: 100%;*/
+  /*margin-bottom: 5%;*/
+  /*padding: 30px;*/
+  /*color: #eee;*/
+  /*background-color: #607D8B;*/
+  /*border-radius: 10px;*/
+/*}*/
+/*.departments.fluidButton:hover {*/
+  /*background-color: #CFD8DC;*/
+  /*cursor: pointer;*/
+  /*color: black;*/
+/*}*/
+/*.departments.fluidButton.isSelected {*/
+  /*background-color: #ffb3b3;*/
+  /*color: black;*/
+/*}*/
+/*@media (max-width: 767px) {*/
+  /*.departments.fluidButton {*/
+    /*margin-bottom: 1%;*/
+    /*padding: 15px;*/
+  /*}*/
+/*}*/

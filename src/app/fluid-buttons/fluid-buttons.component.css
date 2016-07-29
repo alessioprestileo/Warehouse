@@ -1,7 +1,5 @@
-.col-sm-4 {
-  padding: 0% 1%;
-}
-.myButton {
+.fluidButton {
+  text-align: center;
   width: 100%;
   margin-bottom: 5%;
   padding: 30px;
@@ -9,19 +7,66 @@
   background-color: #607D8B;
   border-radius: 10px;
 }
-.myButton:hover {
+.fluidButton:hover {
   background-color: #CFD8DC;
   cursor: pointer;
   color: black;
 }
-.isSelected {
+.fluidButton.isSelected {
+  background-color: #ffb3b3;
+  color: black;
+}
+.sections .fluidButton {
+  text-align: center;
+  padding: 1% 2%;
+  text-decoration: none;
+  font-weight: bold;
+  margin-top: 0.5%;
+  margin-left: 0.5%;
+  margin-right: 0.5%;
+  display: inline-block;
+  color: #039be5;
+  background-color: #eee;
+  border-radius: 10px;
+}
+.sections .fluidButton:hover {
+  color: #ffffff;
+  background-color: #CFD8DC;
+}
+.sections .fluidButton.isSelected {
+  background-color: #ffb3b3;
+  color: #039be5;
+}
+
+.departments .fluidButton {
+  text-align: center;
+  width: 100%;
+  margin-bottom: 5%;
+  padding: 30px;
+  color: #eee;
+  background-color: #607D8B;
+  border-radius: 10px;
+}
+.departments .fluidButton:hover {
+  background-color: #CFD8DC;
+  cursor: pointer;
+  color: black;
+}
+.departments .fluidButton.isSelected {
   background-color: #ffb3b3;
   color: black;
 }
 @media (max-width: 767px) {
-  .myButton {
+  .fluidButton {
+    margin-bottom: 1%;
+    padding: 15px;
+  }
+  .sections .fluidButton {
+    margin-bottom: 1%;
+    padding: 15px;
+  }
+  .departments .fluidButton {
     margin-bottom: 1%;
     padding: 15px;
   }
 }
-

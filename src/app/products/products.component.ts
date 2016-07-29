@@ -26,6 +26,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
   private error: any;
   private title: string;
   private windowWidth: number;
+  private wasMobile: boolean;
   private isMobile: boolean;
   private tableInput: TableInput;
 
@@ -44,10 +45,10 @@ export class ProductsComponent implements OnInit, OnDestroy {
           true : false;
         if (this.isInDOM) {
           this.setTitle();
-          this.onResize();
           this.getProducts().then((prods:Product[]) => {
-              this.products = prods;
-              this.buildTableInput();
+            this.products = prods;
+            this.onResize();
+            this.buildTableInput(this.isMobile);
             }
           );
         }
@@ -60,9 +61,9 @@ export class ProductsComponent implements OnInit, OnDestroy {
     this.subUrlLevel2.unsubscribe();
   }
 
-  private buildTableInput() {
+  private buildTableInput(isMobile: boolean) {
     let headers: Array<HeaderEntry>;
-    if (this.isMobile) {
+    if (isMobile) {
       headers = [
         new HeaderEntry('Id', 'id'),
         new HeaderEntry('Name', 'editables.name')
@@ -80,6 +81,12 @@ export class ProductsComponent implements OnInit, OnDestroy {
   private onResize() : void {
     this.windowWidth = window.innerWidth;
     this.isMobile = (this.windowWidth < 768) ? true : false;
+    if (this.wasMobile !== this.isMobile) {
+      if (typeof this.wasMobile !== 'undefined') {
+        this.buildTableInput(this.isMobile);
+      }
+      this.wasMobile = this.isMobile;
+    }
   }
   private getProducts() : Promise<Product[]> {
     if (this.depId) {

@@ -1,7 +1,7 @@
-<div class="container-fluid">
+<div class="container-fluid" [ngClass]=buttonType>
   <div class="row" *ngFor="let row of labels">
     <div [ngClass]=columnsClass *ngFor="let label of row">
-      <div	class="myButton text-center" [ngClass]="{'isSelected': selectedLabel ===
+      <div	class="fluidButton" [ngClass]="{'isSelected': selectedLabel ===
 					label}" (click)="onSelected(label)">{{label}}
       </div>
     </div>

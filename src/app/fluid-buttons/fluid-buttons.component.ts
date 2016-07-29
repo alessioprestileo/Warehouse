@@ -8,6 +8,7 @@ import {Observable, Subscription} from "rxjs/Rx";
   styleUrls: ['fluid-buttons.component.css']
 })
 export class FluidButtonsComponent implements OnInit {
+  @Input() buttonType: string;
   @Input() inLabels: string[];
   @Input() btnsPerRow: number;
   @Input() inSelectedLabel: Observable<string>;
@@ -21,6 +22,9 @@ export class FluidButtonsComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
+
+    console.log('type = ', this.buttonType);
+
     this.columnsClass = 'col-sm-' + 12/this.btnsPerRow;
     this.labels = this.arrangeBtns(this.inLabels);
     this.subSelectedLabel = this.inSelectedLabel.subscribe(
