@@ -1,5 +1,5 @@
-import { Component, OnInit, OnDestroy, Input, Output, EventEmitter } from '@angular/core';
-import {Observable, Subscription} from "rxjs/Rx";
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import {Observable } from "rxjs/Rx";
 
 @Component({
   moduleId: module.id,
@@ -11,28 +11,23 @@ export class FluidButtonsComponent implements OnInit {
   @Input() buttonType: string;
   @Input() inLabels: string[];
   @Input() btnsPerRow: number;
-  @Input() inSelectedLabel: Observable<string>;
+  @Input() columnsPerBtn: number;
+  @Input() selectedLabel: Observable<string>;
   @Output() selectedEmitter = new EventEmitter();
 
   private labels : Array<string[]>;
-  private columnsClass: string;
-  private subSelectedLabel: Subscription;
-  private selectedLabel: string;
+  private styleColumnClass: string;
+  private styleColumnClassOffset: string;
+  private columnOffset: number;
 
   constructor() {}
 
   ngOnInit() {
-
-    console.log('type = ', this.buttonType);
-
-    this.columnsClass = 'col-sm-' + 12/this.btnsPerRow;
+    this.styleColumnClass = 'col-sm-'+ this.columnsPerBtn;
+    this.columnOffset = (12 - (this.columnsPerBtn * this.btnsPerRow)) / 2;
+    this.styleColumnClassOffset = this.styleColumnClass +
+        ' col-sm-offset-' + this.columnOffset;
     this.labels = this.arrangeBtns(this.inLabels);
-    this.subSelectedLabel = this.inSelectedLabel.subscribe(
-      (selection: string) => this.selectedLabel = selection);
-
-  }
-  ngOnDestroy() {
-    this.subSelectedLabel.unsubscribe();
   }
 
   private arrangeBtns(inLabels: string[]) : Array<string[]> {

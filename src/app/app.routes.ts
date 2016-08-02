@@ -9,6 +9,7 @@ export const ROUTE_NAMES: {[name: string] : string} = {
   all: 'All',
   departments: 'Departments',
   detail: 'Detail',
+  new: 'New',
   products: 'Products'
   }
 

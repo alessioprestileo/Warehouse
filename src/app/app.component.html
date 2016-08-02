@@ -1,8 +1,5 @@
 <div class="background animated fadeIn">
 	<h1 id='title'>{{title}}</h1>
-    <app-fluid-buttons [buttonType]="'sections'"
-      [btnsPerRow]="sectionsPerRow" [inLabels]="sectionsLabels"
-      [inSelectedLabel]="selectedSection$" (selectedEmitter)="onSelectedSection($event)">
-    </app-fluid-buttons>
+  <app-navigation></app-navigation>
 	<router-outlet></router-outlet>
 </div>

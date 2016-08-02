@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { ROUTER_DIRECTIVES } from '@angular/router';
 import { NgClass } from '@angular/common';
 import { Observable }   from 'rxjs/Rx';
@@ -13,7 +13,6 @@ import {AppRoutingService} from "../shared/services/app-routing.service";
 	selector: 'app-departments',
 	templateUrl: 'departments.component.html',
 	styleUrls: ['departments.component.css'],
-  providers: [ ServerService ],
 	directives: [ROUTER_DIRECTIVES, NgClass, FluidButtonsComponent]
 })
 
@@ -22,15 +21,18 @@ export class DepartmentsComponent implements OnInit {
   private title: string;
   private departments: Department[];
   private depsPerRow: number;
+  private columnsPerDep: number;
   private depsLabels: string[];
 
 	constructor(
+      @Inject('ROUTE_NAMES') private ROUTE_NAMES,
 			private serverService: ServerService,
       private appRoutingService: AppRoutingService) {}
 
 	ngOnInit() {
 	  this.depId$ = this.appRoutingService.currentUrlLevel2;
 	  this.depsPerRow = 3;
+    this.columnsPerDep = 4;
     this.getDeps().then(deps => {
       this.departments = deps;
       this.title = DepartmentsComponent.getTitle(deps);
@@ -58,7 +60,7 @@ export class DepartmentsComponent implements OnInit {
     return title;
 	}
   private onSelectedDep(depId: string) : void {
-    let link: string[] = ['/Departments', depId];
+    let link: string[] = [this.ROUTE_NAMES.departments, depId];
     this.appRoutingService.navigate(link);
   }
 }

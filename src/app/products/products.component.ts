@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { Subscription }   from 'rxjs/Rx';
 
 import { Product } from '../shared/models/product';
@@ -7,13 +7,11 @@ import { DataTableComponent } from '../data-table/data-table.component';
 import { ServerService } from '../shared/services/server.service';
 import { AppRoutingService } from '../shared/services/app-routing.service';
 
-
 @Component({
   moduleId: module.id,
   selector: 'app-products',
   templateUrl: 'products.component.html',
   styleUrls: ['products.component.css'],
-  providers: [ ServerService ],
   directives: [DataTableComponent]
 })
 export class ProductsComponent implements OnInit, OnDestroy {
@@ -31,6 +29,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
   private tableInput: TableInput;
 
   constructor(
+      @Inject('ROUTE_NAMES') private ROUTE_NAMES,
       private appRoutingService: AppRoutingService,
       private serverService: ServerService) {}
 
@@ -39,10 +38,10 @@ export class ProductsComponent implements OnInit, OnDestroy {
       (section: string) => this.section = section);
     this.subUrlLevel2 = this.appRoutingService.currentUrlLevel2.subscribe(
       (res: string) => {
-        this.depId = ((this.section === 'Departments') && (res !== 'All')) ?
-          res : null;
-        this.isInDOM = ((this.section === 'Products') || (this.depId)) ?
-          true : false;
+        this.depId = ((this.section === this.ROUTE_NAMES.departments) &&
+          (res !== this.ROUTE_NAMES.all)) ? res : null;
+        this.isInDOM = ((this.section === this.ROUTE_NAMES.products) ||
+          (this.depId)) ? true : false;
         if (this.isInDOM) {
           this.setTitle();
           this.getProducts().then((prods:Product[]) => {
@@ -98,7 +97,8 @@ export class ProductsComponent implements OnInit, OnDestroy {
     }
   }
   private addProduct() : void {
-    let link: string[] = ['Products/Detail', 'New'];
+    let link: string[] = [this.ROUTE_NAMES.products + '/' +
+      this.ROUTE_NAMES.detail, this.ROUTE_NAMES.new];
     this.appRoutingService.navigate(link);
   }
   private setTitle() : void {
@@ -109,7 +109,8 @@ export class ProductsComponent implements OnInit, OnDestroy {
     }
   }
   private editProduct(product: Product) : void {
-    let link: string[] = ['Products/Detail', product.id.toString()];
+    let link: string[] = [this.ROUTE_NAMES.products + '/' +
+      this.ROUTE_NAMES.detail, product.id.toString()];
     this.appRoutingService.navigate(link);
   }
   private removeProduct(product: Product) : void {

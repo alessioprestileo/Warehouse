@@ -1,54 +1,34 @@
-import {Component, DoCheck, OnInit, OnDestroy, Inject} from '@angular/core';
+import { Component, DoCheck, OnInit, OnDestroy } from '@angular/core';
 import { ROUTER_DIRECTIVES } from '@angular/router'
 import { Location }    from '@angular/common';
-import { Observable, Subscription }   from 'rxjs/Rx';
+import { Subscription }   from 'rxjs/Rx';
 
-import { NavButton } from './shared/models/i-nav-button';
-import { FluidButtonsComponent } from './fluid-buttons/fluid-buttons.component';
+import { NavigationComponent } from './navigation/navigation.component';
 import { AppRoutingService } from './shared/services/app-routing.service';
+import { ServerService } from './shared/services/server.service';
 
 @Component({
   moduleId: module.id,
   selector: 'app-root',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.css', '../styles.css', '../forms.css', '../animate.css'],
-  directives: [ROUTER_DIRECTIVES, FluidButtonsComponent],
-  providers: [ AppRoutingService ]
+  directives: [ROUTER_DIRECTIVES, NavigationComponent ],
+  providers: [ AppRoutingService, ServerService ]
 })
 
 export class AppComponent implements DoCheck, OnDestroy, OnInit {
-  private title: string;
-  private sections: NavButton[];
-  private sectionsPerRow: number;
-  private sectionsLabels: string[];
-  private selectedSection$: Observable<string>;
-  private subCurrentUrl: Subscription;
-  private currentUrl: string;
-  private prevBrowserPath: string;
+  private title:string;
+  private subCurrentUrl:Subscription;
+  private currentUrl:string;
+  private prevBrowserPath:string;
 
-  constructor(
-      @Inject('ROUTE_NAMES') private ROUTE_NAMES,
-      private location: Location,
-      private appRoutingService: AppRoutingService) {}
-
+  constructor(private location:Location,
+              private appRoutingService:AppRoutingService) {
+  }
   ngOnInit() {
-    this.sectionsPerRow = 2;
-    this.sectionsLabels = [];
-    this.subCurrentUrl = this.appRoutingService.currentUrl.subscribe(
-      (url: string) => this.currentUrl = url);
-    this.selectedSection$ = this.appRoutingService.currentUrlLevel1;
     this.title = 'Alessio\'s warehouse';
-    this.sections = [
-      {
-        label: 'Products',
-        link: ['/' + this.ROUTE_NAMES.products + '/' + this.ROUTE_NAMES.all]
-      },
-      {
-        label: 'Departments',
-        link: ['/' + this.ROUTE_NAMES.departments + '/' + this.ROUTE_NAMES.all]
-      },
-    ];
-    this.setSectionLabels();
+    this.subCurrentUrl = this.appRoutingService.currentUrl.subscribe(
+      (url:string) => this.currentUrl = url);
   }
   ngOnDestroy() {
     // prevent memory leak when component destroyed
@@ -56,29 +36,12 @@ export class AppComponent implements DoCheck, OnDestroy, OnInit {
   }
   ngDoCheck() {
     // ENABLE TIME TRAVEL
-    let browserPath: string = this.location.path();
-    if ((browserPath) && (browserPath !== this.prevBrowserPath)){
+    let browserPath:string = this.location.path();
+    if ((browserPath) && (browserPath !== this.prevBrowserPath)) {
       this.prevBrowserPath = browserPath;
       if (browserPath !== this.currentUrl) {
-        let link: string[] = [browserPath];
+        let link:string[] = [browserPath];
         this.appRoutingService.navigate(link);
-      }
-    }
-  }
-
-  private setSectionLabels() : void {
-    let length: number  = this.sections.length;
-    for (let i = 0; i < length; i++) {
-      this.sectionsLabels[i] = this.sections[i].label;
-    }
-  }
-  private onSelectedSection(sctnName: string) : void {
-    let length: number  = this.sections.length;
-    for (let i = 0; i < length; i++) {
-      if (sctnName === this.sections[i].label) {
-        let link: string[] = this.sections[i].link;
-        this.appRoutingService.navigate(link);
-        return;
       }
     }
   }

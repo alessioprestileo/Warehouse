@@ -1,28 +1,27 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable }    from 'rxjs/Rx';
+import { BehaviorSubject }    from 'rxjs/Rx';
 import { Router }    from '@angular/router';
 
 @Injectable()
 export class AppRoutingService {
   public currentUrl: BehaviorSubject<string>;
-  public currentUrlLevel1: Observable<string>;
-  public currentUrlLevel2: Observable<string>;
-  public currentUrlLevel3: Observable<string>;
+  public currentUrlLevel1: BehaviorSubject<string>;
+  public currentUrlLevel2: BehaviorSubject<string>;
+  public currentUrlLevel3: BehaviorSubject<string>;
 
   constructor(
-      public router: Router) {
+      private router: Router) {
   	this.currentUrl = new BehaviorSubject<string>('');
-    this.currentUrlLevel1 = this.currentUrl.map(
-      (url: string): string => {
-        return url.split('/')[1];
-      });
-    this.currentUrlLevel2 = this.currentUrl.map(
-      (url: string): string => {
-        return url.split('/')[2];
-      });
-    this.currentUrlLevel3 = this.currentUrl.map(
-      (url: string): string => {
-        return url.split('/')[3];
+    this.currentUrlLevel1 = new BehaviorSubject<string>('');
+    this.currentUrlLevel2 = new BehaviorSubject<string>('');
+    this.currentUrlLevel3 = new BehaviorSubject<string>('');
+    this.currentUrl.subscribe(
+      (url: string): void => {
+        if (url) {
+          this.currentUrlLevel1.next(url.split('/')[1]);
+          this.currentUrlLevel2.next(url.split('/')[2]);
+          this.currentUrlLevel3.next(url.split('/')[3]);
+        }
       });
   }
 
