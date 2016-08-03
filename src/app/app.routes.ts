@@ -3,7 +3,6 @@ import { provideRouter, RouterConfig }  from '@angular/router';
 import { DepartmentsComponent } from './departments/departments.component';
 import { ProductsComponent } from './products/products.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
-
 import * as ROUTES_LABELS from './app.route-labels'
 
 export const ROUTES_DICT: {[name: string] : string} = {
@@ -12,7 +11,7 @@ export const ROUTES_DICT: {[name: string] : string} = {
   detail: ROUTES_LABELS.DETAIL,
   new: ROUTES_LABELS.NEW,
   products: ROUTES_LABELS.PRODUCTS
-  }
+  };
 
 
 export const routes: RouterConfig = [
