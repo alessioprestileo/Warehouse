@@ -20,7 +20,7 @@ export class NavigationComponent implements OnInit {
   private selectedSection$: Observable<string>;
 
   constructor(
-    @Inject('ROUTE_NAMES') private ROUTE_NAMES,
+    @Inject('ROUTES_DICT') private ROUTES_DICT,
     private appRoutingService: AppRoutingService) {}
 
   ngOnInit() {
@@ -31,11 +31,11 @@ export class NavigationComponent implements OnInit {
     this.sections = [
       {
         label: 'Products',
-        link: ['/' + this.ROUTE_NAMES.products + '/' + this.ROUTE_NAMES.all]
+        link: ['/' + this.ROUTES_DICT.products + '/' + this.ROUTES_DICT.all]
       },
       {
         label: 'Departments',
-        link: ['/' + this.ROUTE_NAMES.departments + '/' + this.ROUTE_NAMES.all]
+        link: ['/' + this.ROUTES_DICT.departments + '/' + this.ROUTES_DICT.all]
       },
     ];
     this.setSectionLabels();

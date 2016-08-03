@@ -25,7 +25,7 @@ export class DepartmentsComponent implements OnInit {
   private depsLabels: string[];
 
 	constructor(
-      @Inject('ROUTE_NAMES') private ROUTE_NAMES,
+      @Inject('ROUTES_DICT') private ROUTES_DICT,
 			private serverService: ServerService,
       private appRoutingService: AppRoutingService) {}
 
@@ -60,7 +60,7 @@ export class DepartmentsComponent implements OnInit {
     return title;
 	}
   private onSelectedDep(depId: string) : void {
-    let link: string[] = [this.ROUTE_NAMES.departments, depId];
+    let link: string[] = [this.ROUTES_DICT.departments, depId];
     this.appRoutingService.navigate(link);
   }
 }

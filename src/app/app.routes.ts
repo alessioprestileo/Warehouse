@@ -4,27 +4,29 @@ import { DepartmentsComponent } from './departments/departments.component';
 import { ProductsComponent } from './products/products.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 
+import * as ROUTES_LABELS from './app.route-labels'
 
-export const ROUTE_NAMES: {[name: string] : string} = {
-  all: 'All',
-  departments: 'Departments',
-  detail: 'Detail',
-  new: 'New',
-  products: 'Products'
+export const ROUTES_DICT: {[name: string] : string} = {
+  all: ROUTES_LABELS.ALL,
+  departments: ROUTES_LABELS.DEPARTMENTS,
+  detail: ROUTES_LABELS.DETAIL,
+  new: ROUTES_LABELS.NEW,
+  products: ROUTES_LABELS.PRODUCTS
   }
+
 
 export const routes: RouterConfig = [
   {
     path: '',
-    redirectTo: 'Departments/All',
+    redirectTo: ROUTES_LABELS.DEPARTMENTS + '/' + ROUTES_LABELS.ALL,
     pathMatch: 'full'
   },
   {
-    path: 'Departments',
+    path: ROUTES_LABELS.DEPARTMENTS,
     component: DepartmentsComponent,
     children: [
       {
-        path: 'All'
+        path: ROUTES_LABELS.ALL
       },
       {
         path: ':depId',
@@ -33,11 +35,11 @@ export const routes: RouterConfig = [
     ]
   },
   {
-    path: 'Products/All',
+    path: ROUTES_LABELS.PRODUCTS + '/' + ROUTES_LABELS.ALL,
     component: ProductsComponent,
   },
   {
-    path: 'Products/Detail/:prodId',
+    path: ROUTES_LABELS.PRODUCTS + '/' + ROUTES_LABELS.DETAIL + '/' +  ':prodId',
     component: ProductDetailComponent,
   }
 ];
