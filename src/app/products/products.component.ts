@@ -60,7 +60,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
     this.subUrlLevel2.unsubscribe();
   }
 
-  private buildTableInput(isMobile: boolean) {
+  private buildTableInput(isMobile: boolean) : void {
     let headers: Array<HeaderEntry>;
     if (isMobile) {
       headers = [
@@ -96,7 +96,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
       return this.serverService.getProducts();
     }
   }
-  private addProduct() : void {
+  public addProduct() : void {
     let link: string[] = [this.ROUTES_DICT.products + '/' +
       this.ROUTES_DICT.detail, this.ROUTES_DICT.new];
     this.appRoutingService.navigate(link);
@@ -108,12 +108,12 @@ export class ProductsComponent implements OnInit, OnDestroy {
       this.title = 'All products';
     }
   }
-  private editProduct(product: Product) : void {
+  public editProduct(product: Product) : void {
     let link: string[] = [this.ROUTES_DICT.products + '/' +
       this.ROUTES_DICT.detail, product.id.toString()];
     this.appRoutingService.navigate(link);
   }
-  private removeProduct(product: Product) : void {
+  public removeProduct(product: Product) : void {
     this.serverService.delete(product)
         .then(() => {
             this.products = this.products.filter(p => p !== product);

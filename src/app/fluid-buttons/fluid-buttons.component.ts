@@ -40,7 +40,7 @@ export class FluidButtonsComponent implements OnInit {
     }
     return labels;
   }
-  private onSelected(label: string) : void {
+  public onSelected(label: string) : void {
     this.selectedEmitter.emit(label);
   }
 }

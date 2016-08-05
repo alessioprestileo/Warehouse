@@ -74,7 +74,7 @@ export class ProductDetailComponent implements OnInit {
       return {invalidPrice: true};
     }
   }
-  private save() : void {
+  public save() : void {
     this.product.editables.name = this.myForm.controls['name'].value;
     this.product.editables.department = this.myForm.controls['department'].value;
     this.product.editables.price = +this.myForm.controls['price'].value;

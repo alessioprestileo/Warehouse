@@ -1,7 +1,7 @@
 import {Component, Inject, OnInit } from '@angular/core';
 import { Observable }   from 'rxjs/Rx';
 
-import { NavButton } from '../shared/models/i-nav-button';
+import { iNavButton } from '../shared/models/i-nav-button';
 import { FluidButtonsComponent } from '../fluid-buttons/fluid-buttons.component';
 import { AppRoutingService } from '../shared/services/app-routing.service';
 
@@ -13,7 +13,7 @@ import { AppRoutingService } from '../shared/services/app-routing.service';
   directives: [ FluidButtonsComponent ]
 })
 export class NavigationComponent implements OnInit {
-  private sections: NavButton[];
+  private sections: iNavButton[];
   private sectionsPerRow: number;
   private columnsPerSec: number;
   private sectionsLabels: string[];
@@ -47,7 +47,7 @@ export class NavigationComponent implements OnInit {
       this.sectionsLabels[i] = this.sections[i].label;
     }
   }
-  private onSelectedSection(sctnName: string) : void {
+  public onSelectedSection(sctnName: string) : void {
     let length: number  = this.sections.length;
     for (let i = 0; i < length; i++) {
       if (sctnName === this.sections[i].label) {

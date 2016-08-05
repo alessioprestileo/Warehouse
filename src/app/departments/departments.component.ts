@@ -59,7 +59,7 @@ export class DepartmentsComponent implements OnInit {
     }
     return title;
 	}
-  private onSelectedDep(depId: string) : void {
+  public onSelectedDep(depId: string) : void {
     let link: string[] = [this.ROUTES_DICT.departments, depId];
     this.appRoutingService.navigate(link);
   }

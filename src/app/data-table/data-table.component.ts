@@ -15,7 +15,7 @@ export class DataTableComponent {
   @Output() editEmitter = new EventEmitter();
   @Output() removeEmitter = new EventEmitter();
 
-  private getPropertyValue(object: any, propName: string) : any {
+  public getPropertyValue(object: any, propName: string) : any {
     let splitPropName = propName.split('.');
     let result: any;
     if (splitPropName.length === 1) {
@@ -31,10 +31,10 @@ export class DataTableComponent {
              && propName.includes('price')) ? result.toFixed(2) : result;
     return result;
   }
-  private editItem(item: any) : void {
+  public editItem(item: any) : void {
     this.editEmitter.emit(item);
   }
-  private removeItem(item: any) : void {
+  public removeItem(item: any) : void {
     this.removeEmitter.emit(item);
   }
 }
