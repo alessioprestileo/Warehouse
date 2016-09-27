@@ -1,42 +1,75 @@
-import { Component, DoCheck, OnInit, OnDestroy } from '@angular/core';
-import { ROUTER_DIRECTIVES } from '@angular/router'
+import {
+  AfterViewChecked, Component, DoCheck, EventEmitter, Inject, OnInit, OnDestroy,
+  HostListener,
+} from '@angular/core';
 import { Location }    from '@angular/common';
+
 import { Subscription }   from 'rxjs/Rx';
 
-import { NavigationComponent } from './navigation/navigation.component';
 import { AppRoutingService } from './shared/services/app-routing.service';
-import { ServerService } from './shared/services/server.service';
 
 @Component({
   moduleId: module.id,
   selector: 'app-root',
   templateUrl: 'app.component.html',
-  styleUrls: ['app.component.css', '../styles.css', '../forms.css', '../animate.css'],
-  directives: [ROUTER_DIRECTIVES, NavigationComponent ],
-  providers: [ AppRoutingService, ServerService ]
+  styleUrls: ['app.component.css'],
 })
+export class AppComponent
+implements AfterViewChecked, DoCheck, OnDestroy, OnInit {
+  @HostListener('window:resize', ['$event'])
+  private onResize(event: any) {
+    this.onResizeEmitter.emit();
+  }
+  private currentUrl: string;
+  private onResizeEmitter: EventEmitter<any> = new EventEmitter();
+  private prevBrowserPath: string;
+  private siteMapInput: any[];
+  private subCurrentUrl: Subscription;
+  private subOnResize: Subscription;
+  private title: string;
 
-export class AppComponent implements DoCheck, OnDestroy, OnInit {
-  private title:string;
-  private subCurrentUrl:Subscription;
-  private currentUrl:string;
-  private prevBrowserPath:string;
-
-  constructor(private location:Location,
-              private appRoutingService:AppRoutingService) {
+  constructor(@Inject('ROUTES_DICT') private ROUTES_DICT,
+              private location: Location,
+              private appRoutingService: AppRoutingService) {
   }
   ngOnInit() {
-    this.title = 'Alessio\'s warehouse';
+    this.subOnResize = this.onResizeEmitter.subscribe(() => this.setBodyHeight());
+    this.title = 'Alessio\'s Warehouse';
     this.subCurrentUrl = this.appRoutingService.currentUrl.subscribe(
-      (url:string) => this.currentUrl = url);
+      (url: string) : void => {
+        this.currentUrl = url;
+        this.setSiteMapInput(url);
+      });
   }
   ngOnDestroy() {
     // prevent memory leak when component destroyed
-    this.subCurrentUrl.unsubscribe();
+    this.cancelSubs();
+  }
+  ngAfterViewChecked() {
+    // Call setBodyHeight to get changes in header or footer size
+    this.setBodyHeight();
   }
   ngDoCheck() {
-    // ENABLE TIME TRAVEL
-    let browserPath:string = this.location.path();
+    // Perform checks for time travel
+    this.checkTimeTravel();
+    // Perform checks for route re-direct
+    this.checkRouteReDirect();
+  }
+
+  private cancelSubs() : void {
+    this.subCurrentUrl.unsubscribe();
+    this.subOnResize.unsubscribe();
+  }
+  private checkRouteReDirect() : void {
+    let browserPath: string = this.location.path();
+    if ((browserPath) && (browserPath === this.prevBrowserPath)) {
+      if (browserPath !== this.currentUrl) {
+        this.appRoutingService.navigate([browserPath]);
+      }
+    }
+  }
+  private checkTimeTravel() : void {
+    let browserPath: string = this.location.path();
     if ((browserPath) && (browserPath !== this.prevBrowserPath)) {
       this.prevBrowserPath = browserPath;
       if (browserPath !== this.currentUrl) {
@@ -44,5 +77,42 @@ export class AppComponent implements DoCheck, OnDestroy, OnInit {
         this.appRoutingService.navigate(link);
       }
     }
+  }
+  public onHomeButtonClicked() : void {
+    this.appRoutingService.navigate([
+      '/' + this.ROUTES_DICT.DEPARTMENTS
+    ]);
+  }
+  public onSiteMapClick(link: string[]) : void {
+    this.appRoutingService.navigate(link);
+  }
+  private setBodyHeight() : void {
+    let header: HTMLElement;
+    let headerHeight: number;
+    let footerHeight: number;
+    let routerOutlet: HTMLElement;
+    let body: HTMLElement;
+    header = document.getElementById("app-header");
+    headerHeight = document.getElementById("app-header").clientHeight;
+    footerHeight = document.getElementById("app-footer").clientHeight;
+    body = document.getElementById("app-body");
+    body.style.height = 0.97 * window.innerHeight - headerHeight -
+                                footerHeight + 'px';
+    routerOutlet = document.getElementById("app-router-outlet");
+    routerOutlet.style.height = body.style.height;
+  }
+  private setSiteMapInput(currentUrl: string) : void {
+    let labels: string[] = [];
+    let links: string[][] = [[]];
+    let parentLink: string[] = [''];
+    let splitUrl: string[] = currentUrl.split('/').splice(1);
+    let urlLength: number = splitUrl.length;
+    for (let i = 0; i < urlLength; i++) {
+      let link: string[] = [parentLink[0] + '/' + splitUrl[i]];
+      parentLink[0] = link[0];
+      links[i] = link;
+      labels[i] = splitUrl[i].replace(/[_]+/g, ' ');
+    }
+    this.siteMapInput = [labels, links];
   }
 }

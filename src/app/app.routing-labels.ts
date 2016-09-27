@@ -1,0 +1,16 @@
+export const CHARTS: string = 'Charts';
+export const CHART_DETAIL: string = 'Chart_Detail';
+export const COLLECTION_DETAIL: string = 'Collection_Detail';
+export const DASHBOARD: string = 'Dashboard';
+export const DEPARTMENTS: string = 'Departments';
+export const DEPARTMENT_DETAIL: string = 'Department_Detail';
+export const HOME: string = 'Home';
+export const LAB: string = 'Lab';
+export const MY_CV: string = 'My_CV';
+export const NEW_CHART: string = 'New_Chart';
+export const PRODUCTS: string = 'Products';
+export const PRODUCT_DETAIL: string = 'Product_Detail';
+export const PROJECTS: string = 'Projects';
+export const SAMPLES: string = 'Samples';
+export const WAREHOUSE: string = 'Warehouse';
+export const WHO_AM_I: string = 'Who_Am_I';

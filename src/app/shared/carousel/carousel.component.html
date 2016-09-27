@@ -1,0 +1,20 @@
+<div class="container-fluid app-carousel-background animated fadeIn">
+  <div class="app-carousel">
+    <div #carousel>
+      <div *ngFor="let slide of slides">
+        <div class="app-slideContainer">
+          <div class="app-slideTitle" (click)="onSlideClicked(slide.link)">
+            <h2 style="margin-bottom: -1px;
+                       text-align: center">
+              {{slide.label}}
+            </h2>
+          </div>
+          <img [src]="slide.imgUrl" [alt]="slide.label"
+               style="text-align: center;
+                      vertical-align: middle;
+                      width: 100%">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -11,6 +11,7 @@ module.exports = function(defaults) {
     vendorNpmFiles: [
       'systemjs/dist/system-polyfills.js',
       'systemjs/dist/system.src.js',
+      'systemjs/dist/system.js',
       'zone.js/dist/**/*.+(js|js.map)',
       'es6-shim/es6-shim.js',
       'reflect-metadata/**/*.+(ts|js|js.map)',
@@ -19,11 +20,16 @@ module.exports = function(defaults) {
       'angular2-in-memory-web-api/**/*.+(js|js.map)',
       'angular2-datatable/datatable.js',
       'angular2-datatable/lib/*.js',
-      'bootstrap/dist/js/bootstrap.js',
+      'bootstrap/dist/js/bootstrap.min.js',
       'bootstrap/dist/fonts/*.+(woff|woff2)',
-      'bootstrap/dist/css/bootstrap.css',
-      'bootstrap/dist/css/bootstrap-theme.css',
-      'lodash/**/*.+(js|js.map)'
+      'bootstrap/dist/css/bootstrap.min.css',
+      'bootstrap/dist/css/bootstrap-theme.min.css',
+      'chart.js/dist/Chart.bundle.min.js',
+      'chart.js/dist/Chart.min.js',
+      'jquery/dist/core.js',
+      'jquery/dist/jquery.min.js',
+      'lodash/**/*.+(js|js.map)',
+      'typeahead.js/dist/typeahead.bundle.min.js'
     ]
   });
 };

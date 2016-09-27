@@ -1,0 +1,52 @@
+<div *ngIf="prodIsReady">
+  <form>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xs-12">
+          <h2>
+            {{title}}
+          </h2>
+        </div>
+      </div>
+      <br>
+      <div style="border: 3px solid #d1b394;
+               border-radius: 48px;
+               margin-bottom: 2%;
+               padding: 2% 4%;">
+        <app-product-form
+          [prodFormGroup]="formGroup"
+          [product]="product"
+          [newProd]="newProd">
+        </app-product-form>
+        <br>
+        <div class="container-fluid">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-sm-offset-6 col-sm-3">
+                <button type="button" class="btn btn-default"
+                        [disabled]="!(obFormGroupValid | async)"
+                        (click)="onSave()"
+                        style="border-radius: 8px;
+                                 height: 30px;
+                                 outline: 0;
+                                 width: 100%">
+                  Save
+                </button>
+              </div>
+              <div class="col-sm-3">
+                <button type="button" class="btn btn-default"
+                        (click)="onGoBack()"
+                        style="border-radius: 8px;
+                                 height: 30px;
+                                 outline: 0;
+                                 width: 100%">
+                  Go back
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

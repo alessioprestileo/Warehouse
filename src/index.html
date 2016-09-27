@@ -3,16 +3,19 @@
 <head>
   <link rel="shortcut icon" href="">
   <base href="/">
-  <title>Alessio's Warehouse</title>
+  <title>Alessio's website</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- 1. Load styles -->
   <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="forms.css">
   <link rel="stylesheet" href="animate.css">
-  <link rel="stylesheet" href="../vendor/bootstrap/dist/css/bootstrap.css">
-  <link rel="stylesheet" href="../vendor/bootstrap/dist/css/bootstrap-theme.css">
+  <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap-theme.min.css">
   <!-- 2. Load scripts -->
+  <script src="vendor/systemjs/dist/system.js"></script>
+  <script src="vendor/jquery/dist/jquery.min.js"></script>
+  <script src="vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="vendor/typeahead.js/dist/typeahead.bundle.min.js"></script>
   {{#unless environment.production}}
   <script src="/ember-cli-live-reload.js" type="text/javascript"></script>
   {{/unless}}
@@ -21,12 +24,12 @@
   <script src="{{.}}"></script>
   {{/each}}
   <script>
-    System.import('systemjs.config.js').then(function () {
+    System.import('system-config.js').then(function () {
       System.import('main');
     }).catch(console.error.bind(console));
   </script>
 </head>
 <body class="background">
-  <app-root>Loading...</app-root>
+<app-root>Loading...</app-root>
 </body>
 </html>
