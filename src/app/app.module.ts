@@ -12,15 +12,14 @@ import { HttpModule }     from '@angular/http';
 import { AppComponent }  from './app.component';
 import { AppRoutingService } from './shared/services/app-routing.service';
 import { DepartmentDetailModule } from './routes/department-detail/department-detail.module'
-import { ROUTING, ROUTES_DICT }        from './app.routing';
-import { WarehouseService } from './shared/services/warehouse.service';
-
+import { DepartmentsModule } from "./routes/departments/departments.module";
 import { NavigationModule } from "./shared/navigation/navigation.module";
+import { ProductDetailModule } from "./routes/product-detail/product-detail.module";
+import { ProductsModule } from "./routes/products/products.module";
+import { ROUTING, ROUTES_DICT }        from './app.routing';
 import { SiteMapModule } from "./shared/site-map/site-map.module";
 import { WarehouseNavModule } from "./warehouse-nav/warehouse-nav.module";
-import {DepartmentsModule} from "./routes/departments/departments.module";
-import {ProductsModule} from "./routes/products/products.module";
-import {ProductDetailModule} from "./routes/product-detail/product-detail.module";
+import { WarehouseService } from './shared/services/warehouse.service';
 
 @NgModule({
   imports: [
