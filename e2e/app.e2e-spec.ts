@@ -1,10 +1,10 @@
-import { WarehousePage } from './app.po';
+import { AlepWebsitePage } from './app.po';
 
-describe('warehouse App', function() {
-  let page: WarehousePage;
+describe('alep-website App', function() {
+  let page: AlepWebsitePage;
 
   beforeEach(() => {
-    page = new WarehousePage();
+    page = new AlepWebsitePage();
   });
 
   it('should display message saying app works', () => {

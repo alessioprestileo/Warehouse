@@ -3,7 +3,6 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { NavButton } from "../shared/models/NavButton";
 
 @Component({
-  moduleId: module.id,
   selector: 'app-warehouse-nav',
   templateUrl: 'warehouse-nav.component.html',
   styleUrls: ['warehouse-nav.component.css'],

@@ -17,7 +17,6 @@ import {WarehouseDepSrc} from "../../shared/models/WarehouseDepSrc";
 declare var jQuery: any;
 
 @Component({
-  moduleId: module.id,
   selector: 'app-product-detail',
   templateUrl: 'product-detail.component.html',
   styleUrls: ['product-detail.component.css'],

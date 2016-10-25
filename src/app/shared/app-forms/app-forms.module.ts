@@ -6,14 +6,10 @@ import { SharedModule } from "../../shared/shared.module";
 
 
 @NgModule({
-  imports: [
-    InputBoxModule, SearchBoxModule,
-    SharedModule
-  ],
+  imports:      [ InputBoxModule, SearchBoxModule,
+                  SharedModule ],
   declarations: [ ],
-  exports: [
-    InputBoxModule, SearchBoxModule
-  ],
+  exports:      [ InputBoxModule, SearchBoxModule ],
   providers:    [ ]
 })
 export class AppFormsModule { }

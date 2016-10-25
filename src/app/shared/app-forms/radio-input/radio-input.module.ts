@@ -6,7 +6,6 @@ import { SharedModule } from "../../shared.module";
 
 @NgModule({
   imports: [
-    RadioInputComponent,
     SharedModule
   ],
   declarations: [

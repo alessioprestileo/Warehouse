@@ -9,7 +9,6 @@ import { Subscription }   from 'rxjs/Rx';
 import { AppRoutingService } from './shared/services/app-routing.service';
 
 @Component({
-  moduleId: module.id,
   selector: 'app-root',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.css'],

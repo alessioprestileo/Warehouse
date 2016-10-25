@@ -6,7 +6,7 @@ import {
 declare var jQuery: any;
 
 @Component({
-  moduleId: module.id,
+  // moduleId: module.id,
   selector: 'app-input-box',
   templateUrl: 'input-box.component.html',
   styleUrls: ['input-box.component.css']

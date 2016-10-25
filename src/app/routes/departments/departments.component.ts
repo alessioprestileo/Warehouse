@@ -7,7 +7,6 @@ import { WarehouseService } from '../../shared/services/warehouse.service';
 declare var jQuery: any;
 
 @Component({
-  moduleId: module.id,
 	selector: 'app-departments',
 	templateUrl: 'departments.component.html',
 	styleUrls: ['departments.component.css'],

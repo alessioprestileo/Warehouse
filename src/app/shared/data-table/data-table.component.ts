@@ -4,9 +4,9 @@ import {
 import { TableInput } from "../models/table-input-classes";
 
 @Component({
-  moduleId: module.id,
+  // moduleId: module.id,
   selector: 'app-data-table',
-  templateUrl: 'data-table.component.html'
+  templateUrl: 'data-table.component.html',
 })
 
 export class DataTableComponent {

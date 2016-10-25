@@ -3,14 +3,15 @@ import {
   ViewChild
 } from '@angular/core';
 import {
-  FormControl, FormGroup, FormControlDirective, Validators
+  FormControl, FormGroup, FormControlDirective,
+  Validators
 } from '@angular/forms';
 
 declare var jQuery: any;
 declare var Bloodhound: any;
 
 @Component({
-  moduleId: module.id,
+  // moduleId: module.id,
   selector: 'app-search-box',
   templateUrl: 'search-box.component.html',
   styleUrls: ['search-box.component.css']
