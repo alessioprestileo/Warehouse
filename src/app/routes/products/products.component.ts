@@ -116,8 +116,8 @@ implements AfterViewChecked, DoCheck, OnInit, OnDestroy {
     this.appRoutingService.navigate(link);
   }
   private removeDarkBackground() {
-    jQuery("#app-router-outlet").addClass("backgroundLight");
-    jQuery("#app-router-outlet").removeClass("backgroundDark");
+    jQuery("#app-router-outlet").addClass("app-backgroundLight");
+    jQuery("#app-router-outlet").removeClass("app-backgroundDark");
   }
   public removeProduct(product: WarehouseProd) : void {
     this.warehouseService.deleteItem('products', product.id).then(
@@ -128,8 +128,8 @@ implements AfterViewChecked, DoCheck, OnInit, OnDestroy {
     );
   }
   private setDarkBackground() {
-    jQuery("#app-router-outlet").addClass("backgroundDark");
-    jQuery("#app-router-outlet").removeClass("backgroundLight");
+    jQuery("#app-router-outlet").addClass("app-backgroundDark");
+    jQuery("#app-router-outlet").removeClass("app-backgroundLight");
   }
   private setPathKeywords(url: string) : void {
     let split: string[] = url.split('/');
